@@ -10,17 +10,21 @@ steps:
 uses: actions/checkout@v4
 with:
 path: main
+
 - name: Checkout repo with tests
 uses: actions/checkout@v4
 with:
 repository: ualinso/2324-tests
 path: 2324-tests
+
 - name: Test execution
 working-directory: ./2324-tests/inso2324
 run: mvn test
+
 - name: Publish Test Report
 if: success() || failure()
 uses: scacap/action-surefire-report@v1
+
 - name: Test Summary
 uses: test-summary/action@v2
 with:
